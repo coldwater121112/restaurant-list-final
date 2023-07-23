@@ -1,7 +1,7 @@
 {
   "name": "restaurant_list_final",
   "version": "1.0.0",
-  "description": "",
+  "description": "Restaurant List",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
