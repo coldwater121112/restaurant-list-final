@@ -1,14 +1,24 @@
 const express = require('express')
 const User = require('../../models/user')
-const router = express.Router()
-
 // 引用 passport
 const passport = require('passport')
+
+const router = express.Router()
+
+router.get('/login', (req, res) => {
+  res.render('login')
+})
+
 // 加入 middleware，驗證 request 登入狀態
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/users/login'
 }))
+
+router.get('/register', (req, res) => {
+  res.render('register')
+})
+
 
 // routes/modules/users.js
 router.post('/register', (req, res) => {
@@ -39,8 +49,10 @@ router.post('/register', (req, res) => {
   .catch(err => console.log(err))
 })
 
-router.get('/register', (req, res) => {
-  res.render('register')
+router.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/users/login')
 })
+
 
 module.exports = router
