@@ -1,12 +1,16 @@
 // require packages used in the project
 const express = require('express')
 const session = require('express-session')
+// 載入設定檔，要寫在 express-session 以後
+const usePassport = require('./config/passport')
 const methodOverride = require('method-override');
 const port = 3000
 const exphbs = require('express-handlebars')
 const handlebarsHelper = require('./config/handlebars-helper')
 const app = express()
 const routes = require('./routes')
+
+usePassport(app)
 require('./config/mongoose')
 
 // setting template engine
