@@ -13,18 +13,16 @@
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
         </div>
-    {{!-- sort --}}
-    <div class="dropdown-center">
-      <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Sort
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="?sort=asc&type=name{{#if keyword}}&keyword={{keyword}}{{/if}}">A -> Z</a></li>
-        <li><a class="dropdown-item" href="?sort=desc&type=name{{#if keyword}}&keyword={{keyword}}{{/if}}">Z -> A</a></li>
-        <li><a class="dropdown-item" href="?sort=asc&type=category{{#if keyword}}&keyword={{keyword}}{{/if}}">類別</a></li>
-        <li><a class="dropdown-item" href="?sort=asc&type=location{{#if keyword}}&keyword={{keyword}}{{/if}}">地區</a></li>
-      </ul>
-    </div>
+        {{!-- sort --}}
+        <div class="ms-3 input-group">
+          <select class="form-select" aria-label="Default select example" id="sort" name="sort" onchange="this.form.submit()">
+            <option value="#">選擇排序方式</option>
+            <option value="name_en" {{#is sort "name_en" }} selected {{/is}}>A-Z</option>
+            <option value="-name_en" {{#is sort "-name_en" }} selected {{/is}}>Z-A</option>
+            <option value="category" {{#is sort "category" }}selected{{/is}}>類別</option>
+            <option value="location" {{#is sort "location" }}selected{{/is}}>地區</option>
+          </select>
+        </div>
 
 
       </form>

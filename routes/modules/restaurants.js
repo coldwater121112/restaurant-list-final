@@ -26,8 +26,8 @@ router.post("/", (req, res) => {
 // 使用者可以瀏覽一家餐廳的詳細資訊
 router.get("/:restaurant_id", (req, res) => {
   const userId = req.user._id
-  const _id  = req.params._id
-  // console.log(restaurant_id)
+  const _id  = req.params.restaurant_id
+  console.log(req.params)
   // return Restaurant.findById(Object.values(restaurant_id))
   return Restaurant.findOne({_id , userId})
     .lean()
@@ -44,7 +44,7 @@ router.get("/:restaurant_id", (req, res) => {
 // 使用者可以修改一家餐廳的資訊
 router.get("/:restaurant_id/edit", (req, res) => {
   const userId = req.user._id
-  const _id  = req.params._id
+  const _id  = req.params.restaurant_id
   // console.log(restaurant_id)
   return Restaurant.findOne({_id, userId})
     .lean()
@@ -67,7 +67,7 @@ router.get("/:restaurant_id/edit", (req, res) => {
 
 router.put("/:restaurant_id", (req, res) => {
   const userId = req.user._id
-  const _id  = req.params._id;
+  const _id  = req.params.restaurant_id
   const reqBody = req.body
   return Restaurant.findOne({_id, userId })
     .then(restaurant => {
@@ -88,7 +88,7 @@ router.put("/:restaurant_id", (req, res) => {
 // 刪除餐廳
 router.delete("/:restaurant_id", (req, res) => {
   const userId = req.user._id
-  const _id  = req.params._id
+  const _id  = req.params.restaurant_id
   Restaurant.deleteOne({_id , userId})
     .then(() => res.redirect("/"))
     .catch(error => {
